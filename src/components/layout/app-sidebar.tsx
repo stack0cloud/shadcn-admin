@@ -1,4 +1,5 @@
 import { useLayout } from '@/context/layout-provider'
+import { Separator } from '@/components/ui/separator'
 import {
   Sidebar,
   SidebarContent,
@@ -8,6 +9,7 @@ import {
 } from '@/components/ui/sidebar'
 // import { AppTitle } from './app-title'
 import { sidebarData } from './data/sidebar-data'
+import { EnvironmentTree } from './environment-tree'
 import { NavGroup } from './nav-group'
 import { NavUser } from './nav-user'
 import { TeamSwitcher } from './team-switcher'
@@ -24,7 +26,14 @@ export function AppSidebar() {
         {/* <AppTitle /> */}
       </SidebarHeader>
       <SidebarContent>
-        {sidebarData.navGroups.map((props) => (
+        {/* Overview section first */}
+        <NavGroup {...sidebarData.navGroups[0]} />
+        <Separator className='my-2' />
+        {/* Environment tree second */}
+        <EnvironmentTree />
+        <Separator className='my-2' />
+        {/* Rest of navigation */}
+        {sidebarData.navGroups.slice(1).map((props) => (
           <NavGroup key={props.title} {...props} />
         ))}
       </SidebarContent>
