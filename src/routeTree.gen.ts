@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ClerkRouteRouteImport } from './routes/clerk/route'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedDomainsRouteImport } from './routes/_authenticated/domains'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors404RouteImport } from './routes/(errors)/404'
@@ -38,6 +39,13 @@ import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
+import { Route as AuthenticatedInfrastructureWorkspacesRouteImport } from './routes/_authenticated/infrastructure/workspaces'
+import { Route as AuthenticatedInfrastructureResourcesRouteImport } from './routes/_authenticated/infrastructure/resources'
+import { Route as AuthenticatedInfrastructureDeploymentsRouteImport } from './routes/_authenticated/infrastructure/deployments'
+import { Route as AuthenticatedFinopsReportsRouteImport } from './routes/_authenticated/finops/reports'
+import { Route as AuthenticatedFinopsProvidersRouteImport } from './routes/_authenticated/finops/providers'
+import { Route as AuthenticatedFinopsCostOverviewRouteImport } from './routes/_authenticated/finops/cost-overview'
+import { Route as AuthenticatedFinopsBudgetsRouteImport } from './routes/_authenticated/finops/budgets'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
 const ClerkRouteRoute = ClerkRouteRouteImport.update({
@@ -52,6 +60,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDomainsRoute = AuthenticatedDomainsRouteImport.update({
+  id: '/domains',
+  path: '/domains',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const errors503Route = errors503RouteImport.update({
@@ -190,6 +203,48 @@ const AuthenticatedSettingsAccountRoute =
     path: '/account',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedInfrastructureWorkspacesRoute =
+  AuthenticatedInfrastructureWorkspacesRouteImport.update({
+    id: '/infrastructure/workspaces',
+    path: '/infrastructure/workspaces',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedInfrastructureResourcesRoute =
+  AuthenticatedInfrastructureResourcesRouteImport.update({
+    id: '/infrastructure/resources',
+    path: '/infrastructure/resources',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedInfrastructureDeploymentsRoute =
+  AuthenticatedInfrastructureDeploymentsRouteImport.update({
+    id: '/infrastructure/deployments',
+    path: '/infrastructure/deployments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFinopsReportsRoute =
+  AuthenticatedFinopsReportsRouteImport.update({
+    id: '/finops/reports',
+    path: '/finops/reports',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFinopsProvidersRoute =
+  AuthenticatedFinopsProvidersRouteImport.update({
+    id: '/finops/providers',
+    path: '/finops/providers',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFinopsCostOverviewRoute =
+  AuthenticatedFinopsCostOverviewRouteImport.update({
+    id: '/finops/cost-overview',
+    path: '/finops/cost-overview',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFinopsBudgetsRoute =
+  AuthenticatedFinopsBudgetsRouteImport.update({
+    id: '/finops/budgets',
+    path: '/finops/budgets',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -211,8 +266,16 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/finops/budgets': typeof AuthenticatedFinopsBudgetsRoute
+  '/finops/cost-overview': typeof AuthenticatedFinopsCostOverviewRoute
+  '/finops/providers': typeof AuthenticatedFinopsProvidersRoute
+  '/finops/reports': typeof AuthenticatedFinopsReportsRoute
+  '/infrastructure/deployments': typeof AuthenticatedInfrastructureDeploymentsRoute
+  '/infrastructure/resources': typeof AuthenticatedInfrastructureResourcesRoute
+  '/infrastructure/workspaces': typeof AuthenticatedInfrastructureWorkspacesRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -239,8 +302,16 @@ export interface FileRoutesByTo {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/finops/budgets': typeof AuthenticatedFinopsBudgetsRoute
+  '/finops/cost-overview': typeof AuthenticatedFinopsCostOverviewRoute
+  '/finops/providers': typeof AuthenticatedFinopsProvidersRoute
+  '/finops/reports': typeof AuthenticatedFinopsReportsRoute
+  '/infrastructure/deployments': typeof AuthenticatedInfrastructureDeploymentsRoute
+  '/infrastructure/resources': typeof AuthenticatedInfrastructureResourcesRoute
+  '/infrastructure/workspaces': typeof AuthenticatedInfrastructureWorkspacesRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -272,8 +343,16 @@ export interface FileRoutesById {
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
+  '/_authenticated/domains': typeof AuthenticatedDomainsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/finops/budgets': typeof AuthenticatedFinopsBudgetsRoute
+  '/_authenticated/finops/cost-overview': typeof AuthenticatedFinopsCostOverviewRoute
+  '/_authenticated/finops/providers': typeof AuthenticatedFinopsProvidersRoute
+  '/_authenticated/finops/reports': typeof AuthenticatedFinopsReportsRoute
+  '/_authenticated/infrastructure/deployments': typeof AuthenticatedInfrastructureDeploymentsRoute
+  '/_authenticated/infrastructure/resources': typeof AuthenticatedInfrastructureResourcesRoute
+  '/_authenticated/infrastructure/workspaces': typeof AuthenticatedInfrastructureWorkspacesRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -304,8 +383,16 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/domains'
     | '/'
     | '/errors/$error'
+    | '/finops/budgets'
+    | '/finops/cost-overview'
+    | '/finops/providers'
+    | '/finops/reports'
+    | '/infrastructure/deployments'
+    | '/infrastructure/resources'
+    | '/infrastructure/workspaces'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -332,8 +419,16 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/domains'
     | '/'
     | '/errors/$error'
+    | '/finops/budgets'
+    | '/finops/cost-overview'
+    | '/finops/providers'
+    | '/finops/reports'
+    | '/infrastructure/deployments'
+    | '/infrastructure/resources'
+    | '/infrastructure/workspaces'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -364,8 +459,16 @@ export interface FileRouteTypes {
     | '/(errors)/404'
     | '/(errors)/500'
     | '/(errors)/503'
+    | '/_authenticated/domains'
     | '/_authenticated/'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/finops/budgets'
+    | '/_authenticated/finops/cost-overview'
+    | '/_authenticated/finops/providers'
+    | '/_authenticated/finops/reports'
+    | '/_authenticated/infrastructure/deployments'
+    | '/_authenticated/infrastructure/resources'
+    | '/_authenticated/infrastructure/workspaces'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
@@ -417,6 +520,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/domains': {
+      id: '/_authenticated/domains'
+      path: '/domains'
+      fullPath: '/domains'
+      preLoaderRoute: typeof AuthenticatedDomainsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/(errors)/503': {
@@ -601,6 +711,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsAccountRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/infrastructure/workspaces': {
+      id: '/_authenticated/infrastructure/workspaces'
+      path: '/infrastructure/workspaces'
+      fullPath: '/infrastructure/workspaces'
+      preLoaderRoute: typeof AuthenticatedInfrastructureWorkspacesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/infrastructure/resources': {
+      id: '/_authenticated/infrastructure/resources'
+      path: '/infrastructure/resources'
+      fullPath: '/infrastructure/resources'
+      preLoaderRoute: typeof AuthenticatedInfrastructureResourcesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/infrastructure/deployments': {
+      id: '/_authenticated/infrastructure/deployments'
+      path: '/infrastructure/deployments'
+      fullPath: '/infrastructure/deployments'
+      preLoaderRoute: typeof AuthenticatedInfrastructureDeploymentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/finops/reports': {
+      id: '/_authenticated/finops/reports'
+      path: '/finops/reports'
+      fullPath: '/finops/reports'
+      preLoaderRoute: typeof AuthenticatedFinopsReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/finops/providers': {
+      id: '/_authenticated/finops/providers'
+      path: '/finops/providers'
+      fullPath: '/finops/providers'
+      preLoaderRoute: typeof AuthenticatedFinopsProvidersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/finops/cost-overview': {
+      id: '/_authenticated/finops/cost-overview'
+      path: '/finops/cost-overview'
+      fullPath: '/finops/cost-overview'
+      preLoaderRoute: typeof AuthenticatedFinopsCostOverviewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/finops/budgets': {
+      id: '/_authenticated/finops/budgets'
+      path: '/finops/budgets'
+      fullPath: '/finops/budgets'
+      preLoaderRoute: typeof AuthenticatedFinopsBudgetsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -636,8 +795,16 @@ const AuthenticatedSettingsRouteRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
+  AuthenticatedDomainsRoute: typeof AuthenticatedDomainsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedFinopsBudgetsRoute: typeof AuthenticatedFinopsBudgetsRoute
+  AuthenticatedFinopsCostOverviewRoute: typeof AuthenticatedFinopsCostOverviewRoute
+  AuthenticatedFinopsProvidersRoute: typeof AuthenticatedFinopsProvidersRoute
+  AuthenticatedFinopsReportsRoute: typeof AuthenticatedFinopsReportsRoute
+  AuthenticatedInfrastructureDeploymentsRoute: typeof AuthenticatedInfrastructureDeploymentsRoute
+  AuthenticatedInfrastructureResourcesRoute: typeof AuthenticatedInfrastructureResourcesRoute
+  AuthenticatedInfrastructureWorkspacesRoute: typeof AuthenticatedInfrastructureWorkspacesRoute
   AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
@@ -647,8 +814,19 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
+  AuthenticatedDomainsRoute: AuthenticatedDomainsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedFinopsBudgetsRoute: AuthenticatedFinopsBudgetsRoute,
+  AuthenticatedFinopsCostOverviewRoute: AuthenticatedFinopsCostOverviewRoute,
+  AuthenticatedFinopsProvidersRoute: AuthenticatedFinopsProvidersRoute,
+  AuthenticatedFinopsReportsRoute: AuthenticatedFinopsReportsRoute,
+  AuthenticatedInfrastructureDeploymentsRoute:
+    AuthenticatedInfrastructureDeploymentsRoute,
+  AuthenticatedInfrastructureResourcesRoute:
+    AuthenticatedInfrastructureResourcesRoute,
+  AuthenticatedInfrastructureWorkspacesRoute:
+    AuthenticatedInfrastructureWorkspacesRoute,
   AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,

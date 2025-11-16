@@ -12,9 +12,11 @@
   }
   html {
     @apply overflow-x-hidden;
+    font-family: var(--font-inter);
   }
   body {
     @apply bg-background text-foreground has-[div[data-variant='inset']]:bg-sidebar min-h-svh w-full;
+    font-family: inherit;
   }
 
   /* Override Radix scroll locking for sticky headers */
@@ -51,6 +53,26 @@
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+@layer utilities {
+  .font-jetbrains-mono {
+    font-family: var(--font-jetbrains-mono);
+    font-size: 1rem; /* 16px */
+    line-height: 1.2;
+  }
+
+  .font-inter {
+    font-family: var(--font-inter);
+  }
+
+  .font-manrope {
+    font-family: var(--font-manrope);
+  }
+
+  .font-system {
+    font-family: system-ui, -apple-system, sans-serif;
+  }
 }
 
 @utility faded-bottom {
